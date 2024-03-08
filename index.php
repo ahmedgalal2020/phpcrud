@@ -1,6 +1,5 @@
 <?php
-include './inc/db.php';
-include './inc/closedb.php';
+
 ?>
 
     
