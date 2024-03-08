@@ -1,22 +1,22 @@
 <?php
-session_start();
+session_start(); // Start the session at the very beginning
 
 // Include database connection
 include './inc/db.php';
 
-// Check if the user is logged in, using a session variable (adjust this according to your login logic)
+// Check if the user is logged in, using a session variable
 if (!isset($_SESSION['user_id'])) {
     // User not logged in, redirect to login page
     header('Location: login.php');
-    exit();
+    exit;
 }
 
 // Handle task submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Assuming 'title' and 'description' are the fields for the task form
+    // Your task handling logic goes here
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $userId = $_SESSION['user_id']; // Assuming you store user ID in session upon login
+    $userId = $_SESSION['user_id']; // Use the session variable
 
     // Insert task into database
     $sql = "INSERT INTO tasks (UserID, Title, Description) VALUES ('$userId', '$title', '$description')";
@@ -27,9 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+// Task display and management logic goes here
+
 // Close database connection
 include './inc/closedb.php';
 ?>
+
 
 <div class="container mt-5">
         <h2>Add New Task</h2>

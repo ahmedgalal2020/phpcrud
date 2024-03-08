@@ -1,7 +1,8 @@
 <?php 
+session_start(); // Start the session at the very beginning
+
 // Include database connection
 include './inc/db.php';
-
 
 // Login logic goes here
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc(); // Fetch the user data
+        $_SESSION['user_id'] = $user['UserID']; // Assuming the column is named 'UserID'
         echo "<script>alert('Login Successful'); window.location.href='tasks.php';</script>";
     } else {
         echo "<script>alert('Login Failed: Invalid email or password');</script>";
