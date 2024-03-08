@@ -1,6 +1,7 @@
 <?php 
 // Include database connection
-include 'db.php';
+include './inc/db.php';
+
 
 // Login logic goes here
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Close database connection
-include 'closedb.php';
+include './inc/closedb.php';
 ?>
 
 
