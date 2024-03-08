@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<script>alert('Login Successful'); window.location.href='home.php';</script>";
+        echo "<script>alert('Login Successful'); window.location.href='tasks.php';</script>";
     } else {
         echo "<script>alert('Login Failed: Invalid email or password');</script>";
     }
