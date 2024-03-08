@@ -1,31 +1,31 @@
-<?php 
-session_start(); // Start the session at the very beginning
+<?php
+session_start(); // Start the session.
 
 // Include database connection
 include './inc/db.php';
 
-// Login logic goes here
+// Login logic
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Escape user inputs for security
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']); // Remember to hash and verify in real application
+    $password = mysqli_real_escape_string($conn, $_POST['password']); // Hash and verify in a real app
 
-    // Attempt to select query execution
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'"; // Use prepared statements in real application
+    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc(); // Fetch the user data
-        $_SESSION['user_id'] = $user['UserID']; // Assuming the column is named 'UserID'
-        echo "<script>alert('Login Successful'); window.location.href='tasks.php';</script>";
+        $user = $result->fetch_assoc();
+        $_SESSION['user_id'] = $user['UserID']; // Ensure you have a column named 'UserID'.
+        header('Location: tasks.php'); // Redirect to tasks page.
+        exit();
     } else {
         echo "<script>alert('Login Failed: Invalid email or password');</script>";
     }
 }
 
-// Close database connection
 include './inc/closedb.php';
 ?>
+
+<?php include_once './parts/header.php'; ?>
 
 
 <?php include_once './parts/header.php'; ?>
