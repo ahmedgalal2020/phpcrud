@@ -5,7 +5,7 @@
 
 
 <?php include_once 'parts/header.php'; ?>
-<div class="container-fluid text-light bg-dark">
+<div class="custom-bg">
 <div class="container ">
 <div class="row ">
 
