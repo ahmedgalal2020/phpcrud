@@ -26,8 +26,6 @@ include './inc/closedb.php';
 ?>
 
 
-
-
 <?php include_once './parts/header.php'; ?>
 
 <div class="container mt-5">
