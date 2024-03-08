@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title'])) {
 }
 
 ?>
+<?php include_once './parts/header.php'; ?>
 
 
 <div class="container mt-5">
@@ -77,3 +78,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title'])) {
 <?php
 include './inc/closedb.php';
 ?>
+
+<?php include_once './parts/footer.php'; ?>
