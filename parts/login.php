@@ -2,7 +2,7 @@
 session_start(); // Start the session.
 
 // Include database connection
-include './inc/db.php';
+include '../inc/db.php';
 
 // Login logic
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-include './inc/closedb.php';
+include '../inc/closedb.php';
 ?>
 
 
