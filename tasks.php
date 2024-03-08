@@ -1,45 +1,79 @@
 <?php
 session_start();
-
-// Include database connection
 include './inc/db.php';
 
-// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
-    exit();
+    exit;
 }
 
-// Handle task submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title'])) {
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $description = mysqli_real_escape_string($conn, $_POST['description']);
-    $userId = $_SESSION['user_id']; 
-
-    $sql = "INSERT INTO tasks (UserID, Title, Description, Status) VALUES ('$userId', '$title', '$description', 'Not Started')";
-    if (!mysqli_query($conn, $sql)) {
-        echo "<script>alert('Error adding task: " . mysqli_error($conn) . "');</script>";
+// Edit Task Preparation
+$edit = false;
+if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
+    $editTaskId = $_GET['id'];
+    $editQuery = "SELECT * FROM tasks WHERE TaskID = '$editTaskId' AND UserID = '".$_SESSION['user_id']."'";
+    $editResult = mysqli_query($conn, $editQuery);
+    if ($editResult && mysqli_num_rows($editResult) == 1) {
+        $edit = true;
+        $taskToEdit = mysqli_fetch_assoc($editResult);
     }
 }
 
+// Task Submission (Add & Edit)
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title'])) {
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
+    $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $userId = $_SESSION['user_id'];
+
+    if (isset($_POST['task_id']) && !empty($_POST['task_id'])) {
+        // Update task
+        $taskId = $_POST['task_id'];
+        $updateSql = "UPDATE tasks SET Title='$title', Description='$description', Status='$status' WHERE TaskID='$taskId' AND UserID='$userId'";
+        mysqli_query($conn, $updateSql);
+    } else {
+        // Insert new task
+        $insertSql = "INSERT INTO tasks (UserID, Title, Description, Status) VALUES ('$userId', '$title', '$description', '$status')";
+        mysqli_query($conn, $insertSql);
+    }
+}
+
+// Delete Task
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+    $deleteTaskId = $_GET['id'];
+    $deleteSql = "DELETE FROM tasks WHERE TaskID='$deleteTaskId' AND UserID='".$_SESSION['user_id']."'";
+    mysqli_query($conn, $deleteSql);
+    header("Location: tasks.php"); // Redirect to avoid re-deletion on refresh
+    exit;
+}
 ?>
 <?php include_once './parts/header.php'; ?>
 
-
 <div class="container mt-5">
-    <h2>Add New Task</h2>
-    <form method="post">
+    <h2><?php echo $edit ? "Edit Task" : "Add New Task"; ?></h2>
+    <form action="tasks.php" method="post">
+        <?php if ($edit): ?>
+            <input type="hidden" name="task_id" value="<?php echo $taskToEdit['TaskID']; ?>">
+        <?php endif; ?>
         <div class="form-group">
             <label for="title">Task Title:</label>
-            <input type="text" class="form-control" id="title" name="title" required>
+            <input type="text" name="title" id="title" class="form-control" value="<?php echo $edit ? $taskToEdit['Title'] : ""; ?>" required>
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+            <textarea name="description" id="description" class="form-control" rows="3" required><?php echo $edit ? $taskToEdit['Description'] : ""; ?></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select name="status" id="status" class="form-control">
+                <option value="Not Started" <?php echo $edit && $taskToEdit['Status'] == 'Not Started' ? 'selected' : ''; ?>>Not Started</option>
+                <option value="In Progress" <?php echo $edit && $taskToEdit['Status'] == 'In Progress' ? 'selected' : ''; ?>>In Progress</option>
+                <option value="Completed" <?php echo $edit && $taskToEdit['Status'] == 'Completed' ? 'selected' : ''; ?>>Completed</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary"><?php echo $edit ? "Update Task" : "Add Task"; ?></button>
     </form>
-
+    
     <h3 class="mt-5">Your Tasks</h3>
     <table class="table">
         <thead>
@@ -52,24 +86,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['title'])) {
         </thead>
         <tbody>
             <?php
-            $userId = $_SESSION['user_id'];
-            $sql = "SELECT * FROM tasks WHERE UserID = '$userId'";
-            $result = mysqli_query($conn, $sql);
-
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td>".htmlspecialchars($row['Title'])."</td>";
-                    echo "<td>".htmlspecialchars($row['Description'])."</td>";
-                    echo "<td>".htmlspecialchars($row['Status'])."</td>";
-                    echo "<td>
-                            <a href='edit_task.php?id={$row['TaskID']}' class='btn btn-info btn-sm'>Edit</a>
-                            <a href='delete_task.php?id={$row['TaskID']}' class='btn btn-danger btn-sm'>Delete</a>
-                          </td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='4'>No tasks found</td></tr>";
+            $tasksSql = "SELECT * FROM tasks WHERE UserID='".$_SESSION['user_id']."'";
+            $tasksResult = mysqli_query($conn, $tasksSql);
+            while ($task = mysqli_fetch_assoc($tasksResult)) {
+                echo "<tr>";
+                echo "<td>".htmlspecialchars($task['Title'])."</td>";
+                echo "<td>".htmlspecialchars($task['Description'])."</td>";
+                echo "<td>".htmlspecialchars($task['Status'])."</td>";
+                echo "<td>
+                    <a href='?action=edit&id=".$task['TaskID']."' class='btn btn-sm btn-info'>Edit</a>
+                    <a href='?action=delete&id=".$task['TaskID']."' class='btn btn-sm btn-danger' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+                </td>";
+                echo "</tr>";
             }
             ?>
         </tbody>
