@@ -5,7 +5,7 @@
 
 
 <?php include_once 'parts/header.php'; ?>
-<div class="contener text-light bg-dark">
+<div class="container text-light bg-dark">
 <div class="row ">
 <div class="col-6 ">
 <div class="col-4 m-1 rounded-5 p-4 border border-primary">hi</div>
