@@ -26,7 +26,7 @@ include './inc/closedb.php';
 ?>
 
 
-<?php include_once './parts/header.php'; ?>
+<?php include_once 'header.php'; ?>
 
 <div class="container mt-5">
         <h2>User Login</h2>
