@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include './inc/closedb.php';
 ?>
 
-<?php include_once './parts/header.php'; ?>
+
 
 
 <?php include_once './parts/header.php'; ?>
