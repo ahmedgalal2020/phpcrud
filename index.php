@@ -10,7 +10,8 @@
     <div class="col-3">hi</div>
     <div class="col-3">hi</div>
     <div class="col-3">hi</div>
-
+    <div class="col-3">hi</div>
+    
 </div>
     
 <?php include_once 'parts/footer.php'; ?>
