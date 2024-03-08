@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['UserID']; // Ensure you have a column named 'UserID'.
-        header('Location: ./parts/tasks.php'); // Redirect to tasks page.
+        header('Location: tasks.php'); // Redirect to tasks page.
         exit();
     } else {
         echo "<script>alert('Login Failed: Invalid email or password');</script>";
