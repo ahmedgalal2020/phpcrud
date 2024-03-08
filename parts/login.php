@@ -43,4 +43,4 @@ include './inc/closedb.php';
         </form>
     </div>
 
-    <?php include_once './parts/footer.php'; ?>
+    <?php include_once 'footer.php'; ?>
