@@ -11,6 +11,8 @@
     <div class="col-4 m-1 rounded-5 p-4 border border-primary">hi</div>
     <div class="col-6 m-1 rounded-5 p-4 border border-primary">hi</div>
     <div class="col-6 m-1 rounded-5 p-4 border border-primary">hi</div>
+    <div class="col-12 m-1 rounded-5 p-4 border border-primary">hi</div>
+    <div class="col-12 m-1 rounded-5 p-4 border border-primary">hi</div>
     
 </div>
     
