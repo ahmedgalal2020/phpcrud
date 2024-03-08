@@ -2,7 +2,7 @@
 session_start(); // Start the session.
 
 // Include database connection
-include '../inc/db.php';
+include './inc/db.php';
 
 // Login logic
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -22,11 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-include '../inc/closedb.php';
+include './inc/closedb.php';
 ?>
 
+<?php include_once './parts/header.php'; ?>
 
-<?php include_once 'header.php'; ?>
+
+<?php include_once './parts/header.php'; ?>
 
 <div class="container mt-5">
         <h2>User Login</h2>
@@ -43,4 +45,4 @@ include '../inc/closedb.php';
         </form>
     </div>
 
-<?php include_once 'footer.php'; ?>
+    <?php include_once './parts/footer.php'; ?>
