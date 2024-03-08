@@ -57,7 +57,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="btn btn-danger" href="./parts/logout.php">Logout</a>
+                    <a class="btn btn-danger" href="logout.php">Logout</a>
                 </li>
             </ul>
         </div>
