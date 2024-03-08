@@ -42,6 +42,7 @@ include './inc/closedb.php';
                 <input type="password" class="form-control" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
+            <a href="register.php" class="btn btn-secondary">Register</a>
         </form>
     </div>
 
