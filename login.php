@@ -33,11 +33,11 @@ include './inc/closedb.php';
 <div class="container mt-5">
         <h2>User Login</h2>
         <form action="login.php" method="post">
-            <div class="form-group">
+            <div class="form-group m-3">
                 <label>Email:</label>
                 <input type="email" class="form-control" name="email" required>
             </div>
-            <div class="form-group">
+            <div class="form-group m-3">
                 <label>Password:</label>
                 <input type="password" class="form-control" name="password" required>
             </div>
