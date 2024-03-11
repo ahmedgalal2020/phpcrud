@@ -23,7 +23,7 @@ include './inc/closedb.php';
 			<div class="signin-signup">
 
             <?php include './login.php'; ?>
-            <?php include './parts/sign-up-form.php'; ?>
+            <?php include './register.php'; ?>
 			
 
 			</div>

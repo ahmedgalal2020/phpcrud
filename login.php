@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 include './inc/closedb.php';
 ?>
 
-<?php include_once './parts/header.php'; ?>
 
 
 <form action="login.php" class="sign-in-form" method="post">
@@ -56,4 +55,4 @@ include './inc/closedb.php';
 					</div>
 				</form>
 
-<?php include_once './parts/footer.php'; ?>
+

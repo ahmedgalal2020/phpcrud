@@ -23,28 +23,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close database connection
 include './inc/closedb.php';
 ?>
-<?php include_once './parts/header.php'; ?>
 
-<div class="container mt-5">
-        <h2>User Registration</h2>
-        <form action="register.php" method="post">
-            <div class="form-group">
-                <label>Name:</label>
-                <input type="text" class="form-control" name="name" required>
-            </div>
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" class="form-control" name="email" required>
-            </div>
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-            <div class="form-group">
-                <label>Mobile:</label>
-                <input type="text" class="form-control" name="mobile" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-    <?php include_once './parts/footer.php'; ?>
+
+
+<form action="register.php" method="post" class="sign-up-form">
+					<h2 class="title">Sign up</h2>
+					<div class="input-field">
+						<i class="fas fa-user"></i>
+						<input type="text" name="name" required placeholder="Name" />
+					</div>
+					<div class="input-field">
+						<i class="fas fa-envelope"></i>
+						<input type="email" " name="email" required placeholder="Email" />
+					</div>
+					<div class="input-field">
+						<i class="fas fa-lock"></i>
+						<input type="password" name="password" required placeholder="Password" />
+					</div>
+					<div class="input-field">
+						<i class="fas fa-phone"></i>
+						<input type="text"  name="mobile" required placeholder="Mobile" />
+					</div>
+					<input type="submit" class="btn" value="Sign up" />
+					<p class="social-text">Or Sign up with social platforms</p>
+					<div class="social-media">
+						<a href="#" class="social-icon">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-google"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+					</div>
+				</form>
+
+
