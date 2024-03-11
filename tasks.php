@@ -47,7 +47,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']))
     exit;
 }
 ?>
-<?php include_once './parts/header.php'; ?>
+<?php include_once './parts/headerbs.php'; ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="#">Time Manager</a>
