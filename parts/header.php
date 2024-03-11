@@ -6,7 +6,10 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
     <title>Time Management</title>
+    <script src="js/fontawesome.js" crossorigin="anonymous"></script>
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet" >
     <link href="css/styles.css" rel="stylesheet" >
 
 </head>
