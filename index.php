@@ -94,7 +94,7 @@ include './inc/closedb.php';
 						Sign up
 					</button>
 				</div>
-				<img  src="../images/Privacy-policy-rafiki.png" class="image" alt="" />
+				<img  src="./images/Privacy-policy-rafiki.png" class="image" alt="" />
 			</div>
 			<div class="panel right-panel">
 				<div class="content">
@@ -107,7 +107,7 @@ include './inc/closedb.php';
 						Sign in
 					</button>
 				</div>
-				<img src="../images/Mobile-login-rafiki.png"  class="image" alt="" />
+				<img src="./images/Mobile-login-rafiki.png"  class="image" alt="" />
 			</div>
 		</div>
 	</div>
