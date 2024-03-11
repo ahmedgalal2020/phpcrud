@@ -28,22 +28,32 @@ include './inc/closedb.php';
 <?php include_once './parts/header.php'; ?>
 
 
-<?php include_once './parts/header.php'; ?>
+<form action="login.php" class="sign-in-form" method="post">
+					<h2 class="title">Sign in</h2>
+					<div class="input-field">
+						<i class="fas fa-user"></i>
+						<input type="email"  name="email" placeholder="Email"  required/>
+					</div>
+					<div class="input-field">
+						<i class="fas fa-lock"></i>
+						<input type="password" placeholder="Password" name="password" required/>
+					</div>
+					<input type="submit" value="Login" class="btn solid" />
+					<p class="social-text">Or Sign in with social platforms</p>
+					<div class="social-media">
+						<a href="#" class="social-icon">
+							<i class="fab fa-facebook-f"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-twitter"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-google"></i>
+						</a>
+						<a href="#" class="social-icon">
+							<i class="fab fa-linkedin-in"></i>
+						</a>
+					</div>
+				</form>
 
-<div class="container mt-5">
-        <h2>User Login</h2>
-        <form action="login.php" method="post">
-            <div class="form-group m-3">
-                <label>Email:</label>
-                <input type="email" class="form-control" name="email" required>
-            </div>
-            <div class="form-group m-3">
-                <label>Password:</label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a href="register.php" class="btn btn-secondary">Register</a>
-        </form>
-    </div>
-
-    <?php include_once './parts/footer.php'; ?>
+<?php include_once './parts/footer.php'; ?>
