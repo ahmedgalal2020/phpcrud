@@ -5,7 +5,7 @@ include './inc/closedb.php';
 
     
 <?php include_once './parts/header.php'; ?>
-
+<!-- 
 <div class="container mt-5">
         <h1>Welcome to the Home Page</h1>
         <div class="row">
@@ -14,7 +14,7 @@ include './inc/closedb.php';
                 <a href="register.php" class="btn btn-secondary">Register</a>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
     <!--update-->
