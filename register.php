@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Attempt insert query execution
     $sql = "INSERT INTO users (name, email, password, mobile) VALUES ('$name', '$email', '$password', '$mobile')";
     if($conn->query($sql) === true){
-        echo "<script>alert('Registration Successful'); window.location.href='tasks.php';</script>";
+        echo "<script>alert('Registration Successful'); window.location.href='index.php';</script>";
     } else{
         echo "<script>alert('ERROR: Could not execute query.');</script>";
     }
